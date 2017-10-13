@@ -1,0 +1,30 @@
+{
+  "name": "frame",
+  "version": "1.0.0",
+  "description": "Social media platform posting realtime Arduino Uno data",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon ./start.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuidovdRiet/frame.git"
+  },
+  "author": "Guido van de Riet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuidovdRiet/frame/issues"
+  },
+  "homepage": "https://github.com/GuidovdRiet/frame#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "mongoose": "^4.12.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb-base": "^12.0.2",
+    "eslint-plugin-import": "^2.7.0"
+  }
+}
