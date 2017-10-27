@@ -1,5 +1,6 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const io = require('socket.io');
 
 // Import env variables from variables.env
 dotenv.config({ path: 'variables.env' });
@@ -16,9 +17,5 @@ mongoose.connection.on('error', err => {
 require('./models/Post');
 
 // Start server
-const app = require('./app');
 require('./arduino');
-app.set('port', process.env.PORT || 7777);
-const server = app.listen(app.get('port'), () => {
-    console.log(`Express running → PORT ${server.address().port}`);
-});
+require('./setup');
