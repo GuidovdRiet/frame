@@ -7,3 +7,7 @@ exports.homePage = (req, res) => {
     }
     res.json(object);
 }
+
+exports.createPost = (req, res) => {
+    res.render('add_post', { title: 'Add an post' });
+}
