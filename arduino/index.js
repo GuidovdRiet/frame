@@ -8,9 +8,19 @@ board.on('ready', () => {
     const gsrLeftSensor = new Sensor({ pin: 'A5', freq: 25 });
     const gsrRightSensor = new Sensor({ pin: 'A4', freq: 25 });
 
-    pulseSensor.scale([0, 100]).on('change', throttle(function() {}, 5000));
+    pulseSensor.scale([0, 100]).on('change', throttle(function() {}, 2000));
 
-    gsrLeftSensor.scale([0, 100]).on('change', function() {});
+    gsrLeftSensor.scale([0, 100]).on(
+        'change',
+        throttle(value => {
+            console.log('left gsr', value);
+        }, 1000)
+    );
 
-    gsrRightSensor.scale([0, 1024]).on('change', throttle(function() {}, 1000));
+    gsrRightSensor.scale([0, 100]).on(
+        'change',
+        throttle(value => {
+            // console.log('right gsr', value);
+        }, 1000)
+    );
 });
