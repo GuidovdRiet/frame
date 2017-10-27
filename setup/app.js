@@ -8,7 +8,7 @@ const errorHandlers = require('../handlers/errorHandlers');
 const app = express();
 
 // Load template engine
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'pug');
 
 // Set public folder

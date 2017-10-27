@@ -1,0 +1,5 @@
+mixin postCard(post)
+    h1= post.title
+    p= post.body
+    a(href=`/post/${post.id}/edit`) Edit
+    a(href=`/post/${post.id}/delete`) Delete

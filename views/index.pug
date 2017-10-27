@@ -1,0 +1,7 @@
+extends layout
+
+include mixins/_postCard
+
+block content 
+    each post in posts
+        +postCard(post)
