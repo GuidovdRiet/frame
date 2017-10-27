@@ -1,6 +1,5 @@
-const mongoose = require('mongoose');
-const app = require('./app');
 const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 
 // Import env variables from variables.env
 dotenv.config({ path: 'variables.env' });
@@ -9,14 +8,15 @@ dotenv.config({ path: 'variables.env' });
 mongoose.connect(process.env.DATABASE, {
     useMongoClient: true
 });
-mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
 mongoose.connection.on('error', err => {
     console.log(`🚫 🚫 🚫 → ${err.message}`);
 });
 
 // Import Models here
+require('./models/Post');
 
 // Start server
+const app = require('./app');
 app.set('port', process.env.PORT || 7777);
 const server = app.listen(app.get('port'), () => {
     console.log(`Express running → PORT ${server.address().port}`);
