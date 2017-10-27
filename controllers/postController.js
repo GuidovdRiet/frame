@@ -8,6 +8,10 @@ exports.homePage = (req, res) => {
     res.json(object);
 }
 
-exports.createPost = (req, res) => {
+exports.addPost = (req, res) => {
     res.render('add_post', { title: 'Add an post' });
+}
+
+exports.createPost = async (req, res) => {
+    await new Post()
 }

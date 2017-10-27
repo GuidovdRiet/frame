@@ -1,0 +1,8 @@
+mixin postForm(post = {})
+    form(action=`/posts/add/${post._id || ''}` method="POST")
+        label(for="title") title
+        input(type="text" name="title")
+        label(for="body") text
+        textarea(name="body")
+        input(type="submit" value="Save")
+    

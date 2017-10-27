@@ -9,14 +9,13 @@ const postSchema = new mongoose.Schema({
             'The title of your idea must be {MAXLENGTH} characters or less.'
         ]
     },
-    author: {
-        ref: 'User',
-        type: mongoose.Schema.ObjectId,
-        required: 'You must supply an author'
-    },
     body: {
         type: String,
         required: 'You have to enter content'
+    },
+    created: {
+        type: Date,
+        default: Date.now
     }
 });
 
