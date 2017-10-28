@@ -9,12 +9,13 @@ dotenv.config({ path: 'variables.env' });
 mongoose.connect(process.env.DATABASE, {
     useMongoClient: true
 });
-mongoose.connection.on('error', err => {
+mongoose.connection.on('error', (err) => {
     console.log(`🚫 🚫 🚫 → ${err.message}`);
 });
 
 // Import Models here
 require('./models/Post');
+require('./models/User');
 
 // Start server
 require('./arduino');

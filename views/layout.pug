@@ -2,8 +2,16 @@ doctype html
 html
     head
         title= title
-        link(rel="stylesheet", href="/dist/style.bundle.css")
-        link(href='https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro:300,300i,700', rel='stylesheet')
     
     body
+        .messages 
+            if locals.messages
+                - const categories = Object.keys(messages)
+                each category in categories 
+                    each type in Object.keys(messages)
+                        each message in messages[type]
+                            .flash(class=`flash_${category}`) 
+                                p= message
+                                button(onClick="this.parentElement.remove()") &times;
+
         block content

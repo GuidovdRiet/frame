@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 const postSchema = new mongoose.Schema({
     title: {
@@ -7,11 +8,13 @@ const postSchema = new mongoose.Schema({
         maxlength: [
             200,
             'The title of your idea must be {MAXLENGTH} characters or less.'
-        ]
+        ],
+        trim: true
     },
     body: {
         type: String,
-        required: 'You have to enter content'
+        required: 'You have to enter content',
+        trim: true
     },
     created: {
         type: Date,
