@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
         required: 'Please supply a name',
         trim: true
     },
+    photo: {
+        type: String,
+        required: 'Please supply a photo'
+    }
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' })

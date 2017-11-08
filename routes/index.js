@@ -26,8 +26,10 @@ router.get('/register', userController.registerForm);
 // Log in user
 router.post(
     '/register',
+    userController.upload, 
+    catchErrors(userController.resize),
     userMiddleware.validateRegister,
-    userMiddleware.register,
+    catchErrors(userMiddleware.register),
     authController.login
 );
 
