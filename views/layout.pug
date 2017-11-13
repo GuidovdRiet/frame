@@ -3,16 +3,47 @@ html
     head
         title= title
         link(rel="stylesheet", href="/dist/style.bundle.css")
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
     
     body
-        .messages 
-            if locals.messages
-                - const categories = Object.keys(messages)
-                each category in categories 
-                    each type in Object.keys(messages)
-                        each message in messages[type]
-                            .flash(class=`flash_${category}`) 
-                                p= message
-                                button(onClick="this.parentElement.remove()") &times;
+        .container
+            .messages 
+                if locals.messages
+                    - const categories = Object.keys(messages)
+                    each category in categories 
+                        each type in Object.keys(messages)
+                            each message in messages[type]
+                                .flash(class=`flash_${category}`) 
+                                    p= message
+                                    button(onClick="this.parentElement.remove()") &times;
+            
+            .navbar 
+                .navbar__items
+                    a(href='/').navbar__item
+                        i.fa.fa-square
 
-        block content
+                    a(href='/').navbar__item
+                        i.fa.fa-home
+                            
+                    a(href='/').navbar__item
+                        i.fa.fa-heart
+                    
+                    a(href='/').navbar__item
+                        i.fa.fa-user
+
+                    a(href='/').navbar__item
+                        i.fa.fa-commenting
+                    
+                    a(href='/').navbar__item
+                        i.fa.fa-sliders 
+                        
+                
+                if(user)
+                    .navbar__avatar
+                        .avatar(style=`background-image: url('uploads/${user.photo}')`)
+                else 
+                    a(href='/login').navbar__item
+                        i.fa.fa-sign-in 
+
+            .content__wrapper
+                block content

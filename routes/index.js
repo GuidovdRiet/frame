@@ -19,7 +19,6 @@ router.get('/post/:id/delete', catchErrors(postController.deletePost));
 // -- USERS --
 router.get('/login', userController.loginForm);
 router.post('/login', authController.login);
-// router.post('/login', () => console.log('here'));
 
 router.get('/register', userController.registerForm);
 
