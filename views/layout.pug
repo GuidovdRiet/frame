@@ -17,6 +17,17 @@ html
                                     p= message
                                     button(onClick="this.parentElement.remove()") &times;
             
+            .palette-bar 
+                .bg-orange-red
+                .bg-green
+                .bg-blue
+                .bg-orange-red 
+                .bg-green
+                .bg-blue
+                .bg-orange-red 
+                .bg-green
+                .bg-blue
+
             .navbar 
                 .navbar__items
                     a(href='/').navbar__item
@@ -27,16 +38,17 @@ html
                             
                     a(href='/').navbar__item
                         i.fa.fa-heart
-                    
-                    a(href='/').navbar__item
-                        i.fa.fa-user
 
                     a(href='/').navbar__item
                         i.fa.fa-commenting
                     
                     a(href='/').navbar__item
                         i.fa.fa-sliders 
-                        
+
+                    if(user)
+                        a(href='/logout').navbar__item
+                            i.fa.fa-sign-out 
+                                
                 
                 if(user)
                     .navbar__avatar
