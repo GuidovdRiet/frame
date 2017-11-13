@@ -3,7 +3,6 @@ const Post = mongoose.model('Post');
 
 exports.homePage = async (req, res) => {
     const posts = await Post.find();
-    console.log(req.user);
     res.render('index', { title: 'index', posts });
 };
 

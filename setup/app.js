@@ -19,7 +19,7 @@ app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'pug');
 
 // Set public folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Express Validator Middleware
 app.use(expressValidator());
@@ -29,10 +29,10 @@ app.use(cookieParser('keyboard cat'));
 
 // Express Session Middleware
 app.use(session({
-        secret: process.env.SECRET,
-        resave: false,
-        saveUninitialized: false
-    }));
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false
+}));
 
 // Express Messages Middleware
 app.use(require('connect-flash')());
