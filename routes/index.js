@@ -18,6 +18,8 @@ router.get('/post/:id/delete', catchErrors(postController.deletePost));
 
 // -- USERS --
 router.get('/login', userController.loginForm);
+router.post('/login', authController.login);
+// router.post('/login', () => console.log('here'));
 
 router.get('/register', userController.registerForm);
 
@@ -26,7 +28,7 @@ router.get('/register', userController.registerForm);
 // Log in user
 router.post(
     '/register',
-    userController.upload, 
+    userController.upload,
     catchErrors(userController.resize),
     userMiddleware.validateRegister,
     catchErrors(userMiddleware.register),
