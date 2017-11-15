@@ -16,6 +16,10 @@ const postSchema = new mongoose.Schema({
         required: 'You have to enter content',
         trim: true
     },
+    author: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
+    },
     created: {
         type: Date,
         default: Date.now

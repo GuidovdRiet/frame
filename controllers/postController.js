@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
 const Post = mongoose.model('Post');
+const { ObjectId } = require('mongodb');
 
 exports.homePage = async (req, res) => {
-    const posts = await Post.find();
+    // Get ideas from following users
+    const followingUsers = req.user.following;
+    const followingUsersIds = followingUsers.map(followingUserId =>
+        ObjectId(followingUserId));
+    const posts = await Post.find({ author: { $in: followingUsersIds } });
     res.render('index', { title: 'index', posts });
 };
 
@@ -11,6 +16,7 @@ exports.addPost = (req, res) => {
 };
 
 exports.createPost = async (req, res) => {
+    req.body.author = req.user._id;
     await new Post(req.body).save();
     req.flash('success', 'You have created a new post!');
     res.redirect('/');
