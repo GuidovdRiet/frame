@@ -22,10 +22,22 @@ const userSchema = new mongoose.Schema({
     photo: {
         type: String,
         required: 'Please supply a photo'
-    }
+    },
+    following: [
+        {
+            type: mongoose.Schema.ObjectId,
+            ref: 'User'
+        }
+    ],
+    followers: [
+        {
+            type: mongoose.Schema.ObjectId,
+            ref: 'User'
+        }
+    ]
 });
 
-userSchema.plugin(passportLocalMongoose, { usernameField: 'email' })
-userSchema.plugin(mongodbErrorHandler) // make mongoDB errors pretty 
+userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
+userSchema.plugin(mongodbErrorHandler); // make mongoDB errors pretty
 
 module.exports = mongoose.model('User', userSchema);
