@@ -3,8 +3,11 @@ html
     head
         title= title
         link(rel="stylesheet", href="/dist/style.bundle.css")
-    
     body
+        nav
+            each item in h.menu
+                a(href=`${item.slug}` alt=`${item.title}`) #{item.title}
+
         .messages 
             if locals.messages
                 - const categories = Object.keys(messages)

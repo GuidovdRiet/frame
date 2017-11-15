@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const messages = require('express-messages');
 const passport = require('passport');
 const expressValidator = require('express-validator');
+const helpers = require('../helpers');
 const errorHandlers = require('../handlers/errorHandlers');
 require('../handlers/passport');
 
@@ -51,6 +52,7 @@ app.use(flash());
 // global variables
 app.use((req, res, next) => {
     res.locals.messages = req.flash();
+    res.locals.h = helpers;
     res.locals.user = req.user || null;
     next();
 });
