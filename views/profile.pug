@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    .profile__wrapper 
+        .profile__profile.profile-bar
+            if(user)
+                .profile-bar__avatar.avatar(style=`background-image: url('/uploads/${resourceUser.photo}');`)
+                .profile-bar__top
+                    h4!= user.username
+                    //if(user.isFollowing(resourceUser))
+                    form.profile__follow(action=`/users/${resourceUser._id}/follow` method='POST') 
+                        button(type='submit' name='submit') Follow
+                .profile-bar__bottom

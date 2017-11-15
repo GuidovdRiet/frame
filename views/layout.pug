@@ -52,7 +52,8 @@ html
                 
                 if(user)
                     .navbar__avatar
-                        .avatar(style=`background-image: url('uploads/${user.photo}')`)
+                        a(href=`/users/${user._id}`)
+                            .avatar(style=`background-image: url('uploads/${user.photo}')`)
                 else 
                     a(href='/login').navbar__item
                         i.fa.fa-sign-in 

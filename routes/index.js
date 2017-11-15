@@ -34,4 +34,6 @@ router.post(
     authController.login
 );
 
+router.get('/users/:id', catchErrors(userController.show));
+
 module.exports = router;
