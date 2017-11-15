@@ -13,8 +13,13 @@ board.on('ready', () => {
     gsrLeftSensor.scale([0, 100]).on(
         'change',
         throttle(value => {
-            console.log('left gsr', value);
-        }, 1000)
+            if (value > 580)
+                console.log('Please put on the GSR sensor -- ', value);
+            else if (value > 400) console.log('You are very calm -- ', value);
+            else if (value > 300)
+                console.log('You are kind of calm -- ', value);
+            else if (value > 200) console.log('You are stressed -- ', value);
+        }, 2500)
     );
 
     gsrRightSensor.scale([0, 100]).on(

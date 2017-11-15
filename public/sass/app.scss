@@ -1,2 +1,11 @@
-@import 'partials/layout';
-@import 'partials/nav';
+// Vendor
+@import 'normalize.scss';
+
+// General
+@import 'variables.scss';
+@import 'general.scss';
+
+// Partials
+@import 'partials/header.scss';
+@import 'partials/index.scss';
+@import 'partials/card.scss';

@@ -20,13 +20,13 @@ exports.validateRegister = (req, res, next) => {
         .equals(req.body.password);
 
     const errors = req.validationErrors();
-    
+
     if (errors) {
         req.flash('error', errors.map(err => err.msg));
         res.render('register', {
             title: 'Register',
             body: req.body,
-            messages: req.flash() 
+            messages: req.flash()
         });
         return;
     }
@@ -34,8 +34,12 @@ exports.validateRegister = (req, res, next) => {
 };
 
 exports.register = async (req, res, next) => {
-    const user = new User({ email: req.body.email, name: req.body.name, photo: req.body.photo });
+    const user = new User({
+        email: req.body.email,
+        name: req.body.name,
+        photo: req.body.photo
+    });
     const registerWithPromise = promisify(User.register, User);
     await registerWithPromise(user, req.body.password);
     next();
-}
+};

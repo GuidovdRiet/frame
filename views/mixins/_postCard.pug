@@ -1,5 +1,10 @@
 mixin postCard(post)
-    h1= post.title
-    p= post.body
-    a(href=`/post/${post.id}/edit`) Edit
-    a(href=`/post/${post.id}/delete`) Delete
+    .post-card
+        h1.post-card__title= post.title
+        p= post.body
+        
+        .post-card__actions
+                a(href=`/post/${post.id}/edit`) Edit
+                a(href=`/post/${post.id}/delete`) Delete
+        //- if(post.author.equals(user._id))
+            
