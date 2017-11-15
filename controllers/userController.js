@@ -40,6 +40,6 @@ exports.registerForm = (req, res) => {
 };
 
 exports.show = async (req, res) => {
-    const user = await User.findOne({ _id: req.params.id });
-    res.render('profile', { user, title: 'profile' });
+    const resourceUser = await User.findOne({ _id: req.params.id });
+    res.render('profile', { resourceUser, title: 'profile' });
 };
