@@ -36,4 +36,11 @@ router.post(
 
 router.get('/users/:id', catchErrors(userController.show));
 
+// -- API --
+// user
+router.post(
+    '/api/users/:id/follow',
+    catchErrors(userController.followUser)
+)
+
 module.exports = router;

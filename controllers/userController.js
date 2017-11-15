@@ -43,3 +43,34 @@ exports.show = async (req, res) => {
     const resourceUser = await User.findOne({ _id: req.params.id });
     res.render('profile', { resourceUser, title: 'profile' });
 };
+
+exports.followUser = async (req, res) => {
+    const userToFollow = await User.findOne({ _id: req.params.id });
+
+    const following = req.user.following.map(obj => obj.toString());
+    const operatorOne = following.includes(userToFollow._id.toString())
+        ? '$pull'
+        : '$addToSet';
+    await User.findByIdAndUpdate(
+        req.user._id,
+        { [operatorOne]: { following: userToFollow._id } },
+        { new: true }
+    );
+
+    const followers = userToFollow.followers.map(obj => obj.toString());
+    const operatorTwo = followers.includes(req.user._id.toString())
+        ? '$pull'
+        : '$addToSet';
+    const currentViewedUser = await User.findByIdAndUpdate(
+        userToFollow._id,
+        { [operatorTwo]: { followers: req.user._id } },
+        { new: true }
+    );
+
+    if(userToFollow._id.equals(req.user._id)) {
+        req.flash('error', 'You can\'t follow yourself');
+        res.redirect('back'); 
+    }
+
+    res.json(currentViewedUser);
+};
