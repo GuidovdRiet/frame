@@ -4,7 +4,8 @@ body {
     width: 100vw;
 
     h1,
-    h4 {
+    h4,
+    p {
         margin: 0;
     }
 }
@@ -68,6 +69,10 @@ body {
 
     .form {
         align-self: center;
+
+        .form-group {
+            margin: 10px 0px;
+        }
 
         button,
         label,

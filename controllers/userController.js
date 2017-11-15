@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
 const multer = require('multer');
 const jimp = require('jimp');
 const uuid = require('uuid');
@@ -35,4 +37,9 @@ exports.loginForm = (req, res) => {
 
 exports.registerForm = (req, res) => {
     res.render('register', { title: 'Register' });
+};
+
+exports.show = async (req, res) => {
+    const user = await User.findOne({ _id: req.params.id });
+    res.render('profile', { user, title: 'profile' });
 };

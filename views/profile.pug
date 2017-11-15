@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    .profile__wrapper 
+        .profile__profile.profile-bar
+            if(user)
+                .profile-bar__avatar.avatar(style=`background-image: url('/uploads/${user.photo}');`)
+                .profile-bar__top
+                    h4!= user.username
+                .profile-bar__bottom
