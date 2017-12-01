@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const sensorDataSchema = new mongoose.Schema({
-    pulse: {
-        type: Number
+    type: {
+        type: String
     },
-    GSR: {
+    value: {
         type: Number
     }
 });
