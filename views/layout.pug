@@ -16,47 +16,36 @@ html
                                 .flash(class=`flash_${category}`) 
                                     p= message
                                     button(onClick="this.parentElement.remove()") &times;
-            
-            .palette-bar 
-                .bg-orange-red
-                .bg-green
-                .bg-blue
-                .bg-orange-red 
-                .bg-green
-                .bg-blue
-                .bg-orange-red 
-                .bg-green
-                .bg-blue
 
             .navbar 
                 .navbar__items
-                    a(href='/').navbar__item
-                        i.fa.fa-square
+                    a(href='/').navbar__item.navbar__brand
+                        != h.icon('frame_brand')
 
                     a(href='/').navbar__item
-                        i.fa.fa-home
+                        != h.icon('house')
+
+                    a(href='/').navbar__item
+                        != h.icon('heart')
                             
                     a(href='/').navbar__item
-                        i.fa.fa-heart
+                        != h.icon('avatar')
 
                     a(href='/').navbar__item
-                        i.fa.fa-commenting
+                        != h.icon('chat-1')
                     
                     a(href='/').navbar__item
-                        i.fa.fa-sliders 
-
-                    if(user)
-                        a(href='/logout').navbar__item
-                            i.fa.fa-sign-out 
+                        != h.icon('settings-1')
+                        
                                 
                 
-                if(user)
+                if user
                     .navbar__avatar
                         a(href=`/users/${user._id}`)
-                            .avatar(style=`background-image: url('uploads/${user.photo}')`)
+                            .avatar(style=`background-image: url('/uploads/${user.photo}')`)
                 else 
                     a(href='/login').navbar__item
-                        i.fa.fa-sign-in 
+                        != h.icon('next')  
 
             .content__wrapper
                 block content

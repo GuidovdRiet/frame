@@ -36,7 +36,6 @@ router.get(
 // -- USERS --
 router.get('/login', userController.loginForm);
 router.post('/login', authController.login);
-
 router.get('/register', userController.registerForm);
 
 // Validate data
@@ -50,6 +49,8 @@ router.post(
     catchErrors(userMiddleware.register),
     authController.login
 );
+
+router.get('/logout', authController.logout)
 
 router.get('/users/:id', ensureLoggedIn, catchErrors(userController.show));
 

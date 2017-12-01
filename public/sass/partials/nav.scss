@@ -1,0 +1,51 @@
+.navbar {
+  width: $navbar-width;
+  height: 600px;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  background-color: $color-mid-grey;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+
+  .navbar__item {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    svg {
+      width: 1rem;
+      fill: $color-white;
+    }
+    &:hover,
+    &:visited {
+      text-decoration: none;
+    }
+  }
+
+  .navbar__brand {
+    svg {
+      width: 1.3rem;
+    }
+  }
+
+  .navbar__avatar {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lighten($color-mid-grey, 10%);
+    a {
+      display: block;
+      width: 50%;
+      height: 50%;
+    }
+    .avatar {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
