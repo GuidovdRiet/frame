@@ -2,7 +2,7 @@ const { Sensor, Board } = require('johnny-five');
 const io = require('socket.io-client')('http://45.77.159.108:7777');
 const throttle = require('lodash/throttle');
 
-const { insertData } = require('../services/sensorDataService');
+const insertData = require('../services/sensorDataService/insertData');
 
 io.on('GSR', async ({ value }) => {
     await insertData('GSR', value);

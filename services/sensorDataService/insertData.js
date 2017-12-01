@@ -8,6 +8,4 @@ const insertData = async (param, value) => {
     }).save();
 };
 
-module.exports = {
-    insertData
-};
+module.exports = insertData;
