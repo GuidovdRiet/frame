@@ -12,6 +12,7 @@ block content
                 .profile-bar__bottom
 
         .home__posts
-            each post in posts
-                +postCard(post)
+            if user
+                each post in posts
+                    +postCard(post)
     
