@@ -8,11 +8,17 @@ block content
             if(user)
                 .profile-bar__avatar.avatar(style=`background-image: url('uploads/${user.photo}');`)
                 .profile-bar__top
-                    h4!= user.username
+                    h4= user.name
                 .profile-bar__bottom
 
-        .home__posts
-            if user
-                each post in posts
-                    +postCard(post)
+        .home__user-content
+            .home__posts-wrapper
+                if user
+                    each post in posts
+                        +postCard(post)
+            .home__tracking-results.tracking-results
+                .tracking-results__card
+                .tracking-results__card
+
+        
     
