@@ -1,4 +1,5 @@
 const d3 = require('d3');
+require('../../helpers/range');
 
 const tau = 2 * Math.PI;
 
@@ -11,25 +12,41 @@ const createArc = (innerRadius, outerRadius) =>
         .outerRadius(outerRadius)
         .startAngle(0);
 
-const createCircle = container => container.append('g');
+const createCircle = container =>
+    container
+        .append('g')
+        .attr(
+            'transform',
+            `translate(${parseFloat(container.style('width')) / 2}, 200)`
+        );
 
-const createBackground = circle =>
+const createBackground = (circle, ...radius) =>
     circle
         .append('path')
         .datum({ endAngle: tau })
-        .attr('d', createArc(19, 26));
+        .attr('d', createArc(...radius));
 
-const createForeground = (circle, value) =>
+const createForeground = (circle, value, ...radius) =>
     circle
         .append('path')
         .datum({ endAngle: value * tau })
-        .attr('d', createArc(19, 26));
+        .attr('d', createArc(...radius));
 
 const render = () => {
-    const node = getSVGNode('.value-node');
-    const circle = createCircle();
-    node.append(circle);
+    const el = document.querySelector('.tracking-results__arc');
 
-    createBackground(circle);
-    createForeground(circle, saturateValue());
+    if (!el) return;
+
+    const node = getSVGNode(el);
+    const circle = createCircle(node);
+
+    [...3].forEach(i => {
+        createBackground(circle, 190 - i * 3, 192 - i * 3);
+    });
+
+    // createForeground(circle, saturateValue());
+};
+
+document.onreadystatechange = () => {
+    if (document.readyState == 'interactive') render();
 };

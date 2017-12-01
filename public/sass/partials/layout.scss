@@ -1,5 +1,5 @@
 body {
-    background: #55579F; 
+    background: #55579f;
     background-image: url('/images/background-human.png');
     background-size: 100% 80vh;
     background-repeat: no-repeat;
@@ -39,6 +39,11 @@ body {
                     height: 25rem;
                     margin-top: 2em;
                     background: pink;
+
+                    .tracking-results__arc {
+                        height: 100%;
+                        width: 100%;
+                    }
                 }
             }
         }
