@@ -13,7 +13,7 @@ const javascript = {
 };
 
 module.exports = {
-    entry: './public/javascripts/frame-app.js',
+    entry: ['babel-polyfill', './public/javascripts/frame-app.js'],
     output: {
         path: path.resolve(__dirname, 'public/dist'),
         filename: 'app.bundle.js'
