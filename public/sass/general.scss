@@ -67,28 +67,3 @@ body {
     @extend .background;
     border-radius: 50%;
 }
-
-.profile-bar {
-    height: 250px;
-    position: relative;
-    .profile-bar__avatar {
-        position: absolute;
-        border: 3px solid $color-orange-red;
-        width: 85px;
-        height: 85px;
-        top: -42.5px;
-        left: calc(50% - (85px / 2));
-    }
-    .profile-bar__bottom,
-    .profile-bar__top {
-        width: 100%;
-    }
-    .profile-bar__top {
-        height: 60%;
-        background-color: lighten($color-mid-grey, 10%);
-    }
-    .profile-bar__bottom {
-        background-color: $color-mid-grey;
-        height: 40%;
-    }
-}

@@ -9,19 +9,25 @@ body {
         width: 100%;
         display: flex;
         justify-content: center;
+        align-items: center;
         flex-flow: column nowrap;
         background: red;
-        div {
-            align-self: center;
-        }
-        .home__profile {
-            width: 30%;
-            background: green;
+        .home__profile-wrapper {
+            width: 100%;
+            background: purple;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .home__profile {
+                width: 30%;
+                background: green;
+            }
         }
         .home__user-content {
             background: blue;
             display: flex;
             margin-top: 3em;
+            justify-content: flex-start;
             .home__posts-wrapper {
                 background: pink;
                 flex: 1;
@@ -31,7 +37,6 @@ body {
                 background: yellow;
                 flex: 1;
                 display: flex;
-                justify-content: center;
                 flex-direction: column;
                 padding: 0 2em 2em 2em;
                 .tracking-results__card {

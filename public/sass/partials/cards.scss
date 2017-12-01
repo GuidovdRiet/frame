@@ -1,0 +1,18 @@
+.post-card {
+    width: 100%;
+    background-color: darken($color-mid-grey, 20%);
+    color: #fff;
+}
+
+.user-card {
+    .user-card__content {
+        .user-card-avatar__wrapper {
+            .user-card__avatar {
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                border: 3px solid $color-orange-red;
+            }
+        }
+    }
+}
