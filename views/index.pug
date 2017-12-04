@@ -3,13 +3,15 @@ extends layout
 include mixins/_postCard
 
 block content     
-    .home__wrapper 
-        .home__profile.profile-bar
-            if(user)
-                .profile-bar__avatar.avatar(style=`background-image: url('uploads/${user.photo}');`)
-                .profile-bar__top
-                    h4= user.name
-                .profile-bar__bottom
+    .home__wrapper
+        .home__profile-wrapper
+            .home__profile.user-card
+                if(user)
+                    .user-card__content
+                        .user-card-avatar__wrapper 
+                            .user-card__avatar.avatar(style=`background-image: url('uploads/${user.photo}');`)
+                        h1= user.name
+                        p Better be good
 
         .home__user-content
             .home__posts-wrapper
