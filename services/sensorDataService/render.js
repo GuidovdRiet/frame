@@ -6,7 +6,7 @@ require('../../helpers/range');
 const tau = 2 * Math.PI;
 const { ringsSpacing, ringsRadius, ringsWidth } = {
     ringsSpacing: 13,
-    ringsRadius: 140,
+    ringsRadius: 130,
     ringsWidth: 2
 };
 const colors = ['#R1B1E8', '#45B7C3', '#F97785'];
@@ -64,8 +64,6 @@ const render = () => {
             ringsRadius + 2 - i * ringsSpacing
         );
     });
-
-    // createForeground(circle, saturateValue());
 };
 
 document.onreadystatechange = () => {
