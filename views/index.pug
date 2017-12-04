@@ -2,26 +2,50 @@ extends layout
 
 include mixins/_postCard
 
-block content     
-    .home__wrapper
-        .home__profile-wrapper
-            .home__profile.user-card
-                if(user)
+block content
+    if user
+        .home__wrapper
+            .home__profile-wrapper
+                .home__profile.user-card
                     .user-card__content
                         .user-card-avatar__wrapper 
                             .user-card__avatar.avatar(style=`background-image: url('uploads/${user.photo}');`)
                         h1= user.name
                         p Better be good
+                    .user-card__stats
+                        .stats-wrapper
+                            h4 following
+                            p 710
+                        .stats-wrapper
+                            h4 followers
+                            p 690
+                        .stats-wrapper
+                            h4 posts
+                            p 450
+                        .stats-wrapper
+                            h4 average
+                            p 9.6
+                    .user-card-btn__wrapper
+                        .btn.btn__large.btn__ghost
+                            p follow
+                        .btn.btn__large.btn__ghost
+                            p message
+                        //- .btn.btn__circle
+                        //-     p message
+                            
 
-        .home__user-content
-            .home__posts-wrapper
-                if user
-                    each post in posts
-                        +postCard(post)
-            .home__tracking-results.tracking-results
-                .tracking-results__card
-                .tracking-results__card
-                    svg.tracking-results__arc
+
+
+
+            .home__user-content
+                .home__posts-wrapper
+                    if user
+                        each post in posts
+                            +postCard(post)
+                .home__tracking-results.tracking-results
+                    .tracking-results__card
+                    .tracking-results__card
+                        svg.tracking-results__arc
 
         
     

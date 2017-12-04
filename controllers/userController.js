@@ -67,9 +67,9 @@ exports.followUser = async (req, res) => {
         { new: true }
     );
 
-    if(userToFollow._id.equals(req.user._id)) {
-        req.flash('error', 'You can\'t follow yourself');
-        res.redirect('back'); 
+    if (userToFollow._id.equals(req.user._id)) {
+        req.flash('error', "You can't follow yourself");
+        res.redirect('back');
     }
 
     res.json(currentViewedUser);

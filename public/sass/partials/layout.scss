@@ -21,6 +21,48 @@ body {
             .home__profile {
                 width: 30%;
                 background: green;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .user-card__content {
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-bottom: 3em;
+                    .user-card-avatar__wrapper {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        margin-bottom: 3.5em;
+                        .user-card__avatar {
+                            margin-top: -4em;
+                        }
+                    }
+                }
+                .user-card__stats {
+                    background: blue;
+                    display: flex;
+                    justify-content: center;
+                    .stats-wrapper {
+                        margin: 0 2.5em;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        padding: .9em 0;
+                        p {
+                            margin: .2em 0;
+                        }
+                    }
+                }
+                .user-card-btn__wrapper {
+                    width: 50%;
+                    display: flex;
+                    background: yellow;
+                    margin: 2em 0;
+                    justify-content: space-between;
+                }
             }
         }
         .home__user-content {
@@ -44,7 +86,6 @@ body {
                     height: 25rem;
                     margin-top: 2em;
                     background: pink;
-
                     .tracking-results__arc {
                         height: 100%;
                         width: 100%;
