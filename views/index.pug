@@ -11,27 +11,28 @@ block content
                         .user-card-avatar__wrapper 
                             .user-card__avatar.avatar(style=`background-image: url('uploads/${user.photo}');`)
                         h1= user.name
-                        p Better be good
+                        h2 Better be good
                     .user-card__stats
                         .stats-wrapper
                             h4 following
-                            p 710
+                            h2 710
                         .stats-wrapper
                             h4 followers
-                            p 690
+                            h2 690
                         .stats-wrapper
                             h4 posts
-                            p 450
+                            h2 450
                         .stats-wrapper
                             h4 average
-                            p 9.6
-                    .user-card-btn__wrapper
+                            h2 9.6
+                    .user-card-btn__wrapper-squared 
                         .btn.btn__large.btn__ghost
                             p follow
                         .btn.btn__large.btn__ghost
                             p message
-                        //- .btn.btn__circle
-                        //-     p message
+                    .user-card-btn__wrapper-rounded
+                        .btn.btn__circle
+                            != h.icon('edit')
                             
 
 
