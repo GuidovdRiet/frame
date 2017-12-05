@@ -1,6 +1,7 @@
 const d3 = require('d3');
 const { saturateZeroOne } = require('../../helpers/saturateValues');
 const { getRandomInt } = require('../../helpers/randomValueInRange');
+const { fetchData } = require('./dataService');
 require('../../helpers/range');
 
 const tau = 2 * Math.PI;
@@ -41,11 +42,7 @@ const createForeground = (circle, value, color, ...radius) =>
         .style('fill', color)
         .attr('d', createArc(...radius));
 
-const render = () => {
-    const el = document.querySelector('.tracking-results__arc');
-
-    if (!el) return;
-
+const renderCircleGraph = el => {
     const node = getSVGNode(el);
     const circle = createCircle(node);
 
@@ -67,5 +64,7 @@ const render = () => {
 };
 
 document.onreadystatechange = () => {
-    if (document.readyState == 'interactive') render();
+    const el = document.querySelector('.tracking-results__arc');
+    if (!el) return;
+    if (document.readyState == 'interactive') renderCircleGraph(el);
 };
