@@ -1,7 +1,28 @@
 .btn__large {
-    padding: .7em 1em;    
+    padding: .9em 2.9em;    
+    width: 6em;
+    height: 1.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
 }
 
 .btn__ghost {
-    border: 2px solid $color-extra-light-grey;
+    border: 1px solid $color-light-grey;
+}
+
+.btn__circle {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    border: 1px solid $color-light-grey;
 }

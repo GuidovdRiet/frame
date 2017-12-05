@@ -1,6 +1,10 @@
+html {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 62.5%;
+}
+
 body {
-    background: #55579f;
-    background-image: url('/images/background-human.png');
+    background: #282B32;
     background-size: 100% 80vh;
     background-repeat: no-repeat;
     width: 100%;
@@ -11,62 +15,15 @@ body {
         justify-content: center;
         align-items: center;
         flex-flow: column nowrap;
-        background: red;
         .home__profile-wrapper {
             width: 100%;
-            background: purple;
             display: flex;
             justify-content: center;
             align-items: center;
-            .home__profile {
-                width: 30%;
-                background: green;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                .user-card__content {
-                    display: flex;
-                    justify-content: center;
-                    flex-direction: column;
-                    align-items: center;
-                    margin-bottom: 3em;
-                    .user-card-avatar__wrapper {
-                        width: 100%;
-                        display: flex;
-                        justify-content: center;
-                        margin-bottom: 3.5em;
-                        .user-card__avatar {
-                            margin-top: -4em;
-                        }
-                    }
-                }
-                .user-card__stats {
-                    background: blue;
-                    display: flex;
-                    justify-content: center;
-                    .stats-wrapper {
-                        margin: 0 2.5em;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        justify-content: center;
-                        padding: .9em 0;
-                        p {
-                            margin: .2em 0;
-                        }
-                    }
-                }
-                .user-card-btn__wrapper {
-                    width: 50%;
-                    display: flex;
-                    background: yellow;
-                    margin: 2em 0;
-                    justify-content: space-between;
-                }
-            }
+            background: $color-mid-grey;
+            padding-bottom: 4em;
         }
         .home__user-content {
-            background: blue;
             display: flex;
             margin-top: 3em;
             justify-content: flex-start;

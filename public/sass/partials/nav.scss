@@ -4,7 +4,7 @@
   position: fixed;
   top: 0px;
   left: 0;
-  background-color: $color-mid-grey;
+  background-color: $color-dark-grey;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
@@ -16,7 +16,7 @@
     justify-content: center;
     text-decoration: none;
     svg {
-      width: 1rem;
+      width: 1.7rem;
       fill: $color-white;
     }
     &:hover,
@@ -27,7 +27,7 @@
 
   .navbar__brand {
     svg {
-      width: 1.3rem;
+      width: 2.1rem;
     }
   }
 
