@@ -2,15 +2,15 @@ const { Sensor, Board } = require('johnny-five');
 const io = require('socket.io-client')('http://45.77.159.108:7777');
 const throttle = require('lodash/throttle');
 
-const insertData = require('../services/sensorDataService/insertData');
+const { insertData } = require('../services/sensorDataService/dataService');
 
-io.on('GSR', async ({ value }) => {
-    await insertData('GSR', value);
+io.on('GSR', async ({ value, userId }) => {
+    await insertData('GSR', value, userId);
     console.log('inserted GSR value', value);
 });
 
-io.on('pulse', async ({ value }) => {
-    await insertData('pulse', value);
+io.on('pulse', async ({ value, userId }) => {
+    await insertData('pulse', value, userId);
     console.log('inserted pulse value', value);
 });
 
@@ -22,7 +22,9 @@ new Board().on('ready', () => {
         'change',
         throttle(() => {
             io.emit('rightData', {
-                data: gsrLeftSensor.value
+                data: gsrLeftSensor.value,
+                //TEMP: user id
+                userId: 1
             });
         }, 2500)
     );
@@ -31,7 +33,9 @@ new Board().on('ready', () => {
         'change',
         throttle(() => {
             io.emit('leftData', {
-                data: gsrRightSensor.value
+                //TEMP: user id
+                data: gsrRightSensor.value,
+                userId: 1
             });
         }, 2500)
     );
