@@ -1,3 +1,4 @@
+const { DefinePlugin } = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 
@@ -31,5 +32,10 @@ module.exports = {
             }
         ]
     },
-    plugins: [new ExtractTextPlugin('style.bundle.css')]
+    plugins: [
+        new ExtractTextPlugin('style.bundle.css'),
+        new DefinePlugin({
+            'typeof window': '"object"'
+        })
+    ]
 };
