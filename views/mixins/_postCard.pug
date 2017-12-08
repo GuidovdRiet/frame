@@ -1,12 +1,13 @@
 mixin postCard(post)
     .post-card
-        .avatar(style=`background-image: url('/uploads/${user.photo}')`)
-        
-        h1.post-card__title= `${post.title},`
-        p= post.body
-        
-        .post-card__details
-                p= user.name 
-                p 20 minutes ago 
-        //- if(post.author.equals(user._id))
-            
+        .post-card__image-wrapper
+                .avatar(style=`background-image: url('/uploads/${user.photo}')`)
+
+        .post-card__content-wrapper
+                h1.post-card__title= `${post.title},`
+                p= post.body
+                
+                .post-card__details
+                        p= user.name 
+                        p 20 minutes ago 
+                
