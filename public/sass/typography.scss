@@ -1,3 +1,7 @@
+* {
+    -webkit-font-smoothing: antialiased;
+}
+
 h1, h2, h3, h4, h5, h6, p {
     color: $color-white;
 }
@@ -9,9 +13,9 @@ h1 {
 }
 
 h2 {
-    font-size: 1.7rem;
+    font-size: 1.65rem;
     font-weight: 200;
-    margin-top: .2em;
+    margin: .23em 0 0 0;
     color: $color-extra-light-grey;
 }
 
