@@ -1,10 +1,12 @@
 mixin postCard(post)
     .post-card
-        h1.post-card__title= post.title
+        .avatar(style=`background-image: url('/uploads/${user.photo}')`)
+        
+        h1.post-card__title= `${post.title},`
         p= post.body
         
-        .post-card__actions
-                a(href=`/post/${post.id}/edit`) Edit
-                a(href=`/post/${post.id}/delete`) Delete
+        .post-card__details
+                p= user.name 
+                p 20 minutes ago 
         //- if(post.author.equals(user._id))
             

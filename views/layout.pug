@@ -7,46 +7,47 @@ html
         script(src="/dist/app.bundle.js")
     
     body
-        .container
-            .messages 
-                if locals.messages
-                    - const categories = Object.keys(messages)
-                    each category in categories 
-                        each type in Object.keys(messages)
-                            each message in messages[type]
-                                .flash(class=`flash_${category}`) 
-                                    p= message
-                                    button(onClick="this.parentElement.remove()") &times;
+        .border
+            .container
+                .messages 
+                    if locals.messages
+                        - const categories = Object.keys(messages)
+                        each category in categories 
+                            each type in Object.keys(messages)
+                                each message in messages[type]
+                                    .flash(class=`flash_${category}`) 
+                                        p= message
+                                        button(onClick="this.parentElement.remove()") &times;
 
-            .navbar 
-                .navbar__items
-                    a(href='/').navbar__item.navbar__brand
-                        != h.icon('frame_brand')
+                .navbar 
+                    .navbar__items
+                        a(href='/').navbar__item.navbar__brand
+                            != h.icon('frame_brand')
 
-                    a(href='/').navbar__item
-                        != h.icon('house')
+                        a(href='/').navbar__item
+                            != h.icon('house')
 
-                    a(href='/').navbar__item
-                        != h.icon('heart')
-                            
-                    a(href='/').navbar__item
-                        != h.icon('avatar')
-
-                    a(href='/').navbar__item
-                        != h.icon('pie-chart')
-                    
-                    a(href='/').navbar__item
-                        != h.icon('settings-1')
-                        
+                        a(href='/').navbar__item
+                            != h.icon('heart')
                                 
-                
-                if user
-                    .navbar__avatar
-                        a(href=`/users/${user._id}`)
-                            .avatar(style=`background-image: url('/uploads/${user.photo}')`)
-                else 
-                    a(href='/login').navbar__item
-                        != h.icon('next')  
+                        a(href='/').navbar__item
+                            != h.icon('avatar')
 
-            .content__wrapper
-                block content
+                        a(href='/').navbar__item
+                            != h.icon('pie-chart')
+                        
+                        a(href='/').navbar__item
+                            != h.icon('settings-1')
+                            
+                                    
+                    
+                    if user
+                        .navbar__avatar
+                            a(href=`/users/${user._id}`)
+                                .avatar(style=`background-image: url('/uploads/${user.photo}')`)
+                    else 
+                        a(href='/login').navbar__item
+                            != h.icon('next')  
+
+                .content__wrapper
+                    block content
