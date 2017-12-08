@@ -27,7 +27,7 @@ const createCircle = container =>
         .append('g')
         .attr(
             'transform',
-            `translate(${parseFloat(container.style('width')) / 2}, 225)`
+            `translate(${parseFloat(container.style('width')) / 2}, 205)`
         );
 
 const createBackground = (circle, ...radius) =>
