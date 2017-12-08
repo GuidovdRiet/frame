@@ -26,7 +26,7 @@ body {
         align-items: center;
         flex-flow: column nowrap;
         .home__profile-wrapper {
-            width: 100%;
+            width: 94.5vw;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -36,11 +36,12 @@ body {
         .home__user-content {
             display: flex;
             margin-top: 3em;
-            width: 100%;
+            width: 90%;
             justify-content: flex-start;
             .home__posts-wrapper {
                 flex: 1;
                 padding: 0 20px 0 0;
+                margin-right: 7em;
             }
             .tracking-results {
                 background: $color-dark-grey;
