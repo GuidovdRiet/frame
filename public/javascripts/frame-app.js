@@ -1,4 +1,4 @@
 // Import scss for webpack compiling
-require('../sass/app.scss');
+import '../sass/app.scss';
 
-require('../../services/sensorDataService/renderCircleGraph');
+import '../../services/sensorDataService/renderCircleGraph';

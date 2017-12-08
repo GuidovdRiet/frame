@@ -1,7 +1,7 @@
 const d3 = require('d3');
 const { saturateZeroOne } = require('../../helpers/saturateValues');
 const { getRandomInt } = require('../../helpers/randomValueInRange');
-const { fetchData } = require('./dataService');
+// const {fetchData} = require()
 require('../../helpers/range');
 
 const tau = 2 * Math.PI;
