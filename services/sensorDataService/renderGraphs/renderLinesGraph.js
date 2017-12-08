@@ -1,15 +1,8 @@
 const d3 = require('d3');
-const { saturateZeroOne } = require('../../helpers/saturateValues');
-const { getRandomInt } = require('../../helpers/randomValueInRange');
-const { fetchData } = require('./dataService');
-require('../../helpers/range');
+const { saturateZeroOne } = require('../../../helpers/saturateValues');
+const { getRandomInt } = require('../../../helpers/randomValueInRange');
+const renderGraph = require('./renderGraph');
 
-const tau = 2 * Math.PI;
-const { ringsSpacing, ringsRadius, ringsWidth } = {
-    ringsSpacing: 13,
-    ringsRadius: 130,
-    ringsWidth: 2
-};
 const colors = ['#R1B1E8', '#45B7C3', '#F97785'];
 
 const getSVGNode = el => d3.select(el);
@@ -42,11 +35,13 @@ const createForeground = (circle, value, color, ...radius) =>
         .style('fill', color)
         .attr('d', createArc(...radius));
 
+//TODO: Pass data from?
 const renderCircleGraph = el => {
     const node = getSVGNode(el);
     const circle = createCircle(node);
-
-    [...2].forEach((range, i) => {
+    console.log('here');
+    renderGraph((range, i) => {
+        console.log(range, i);
         createBackground(
             circle,
             ringsRadius - i * ringsSpacing,
@@ -63,8 +58,4 @@ const renderCircleGraph = el => {
     });
 };
 
-document.onreadystatechange = () => {
-    const el = document.querySelector('.tracking-results__arc');
-    if (!el) return;
-    if (document.readyState == 'interactive') renderCircleGraph(el);
-};
+module.exports = renderCircleGraph;

@@ -4,22 +4,14 @@ html {
 }
 
 body {
-    background: #282B32;
+    background: #282b32;
     background-size: 100% 80vh;
     background-repeat: no-repeat;
     width: 100%;
     height: 100vh;
-    .border {
-        height: 3px;
-        border: 0;
-        background-color:  $color-orange; //fallback
-        background-image: linear-gradient(rgb(235, 69, 112), rgb(155, 72, 153));
-        background-size: 50%;
-      }
     .home__wrapper {
         width: 100%;
         display: flex;
-        margin-top: 2%;
         justify-content: center;
         align-items: center;
         flex-flow: column nowrap;
@@ -40,6 +32,7 @@ body {
                 padding: 0 20px 0 0;
             }
             .tracking-results {
+                background: $color-dark-grey;
                 flex: 1;
                 display: flex;
                 flex-direction: column;
