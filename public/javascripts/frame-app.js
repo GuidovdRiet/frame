@@ -1,4 +1,4 @@
 // Import scss for webpack compiling
-import '../sass/app.scss';
+require('../sass/app.scss');
 
-import '../../services/sensorDataService/renderGraphs';
+require('../../services/sensorDataService/renderGraphs');

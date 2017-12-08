@@ -7,11 +7,9 @@ const tau = 2 * Math.PI;
 const { ringsSpacing, ringsRadius, ringsWidth } = {
     ringsSpacing: 13,
     ringsRadius: 130,
-    ringsWidth: 2
+    ringsWidth: 4
 };
 const colors = ['rgb(27, 30, 128)', 'rgb(69, 183, 195)', 'rgb(249, 119, 133)'];
-
-const getSVGNode = el => d3.select(el);
 
 const createArc = (innerRadius, outerRadius) =>
     d3
@@ -34,20 +32,15 @@ const createBackground = (circle, ...radius) =>
         .datum({ endAngle: tau })
         .attr('d', createArc(...radius));
 
-const createForeground = (circle, value, color, ...radius) => {
-    const returnVal = circle
+const createForeground = (circle, value, color, ...radius) =>
+    circle
         .append('path')
         .style('fill', color)
         .datum({ endAngle: value * tau })
         .attr('d', createArc(...radius));
 
-    console.log(color, returnVal.style('fill'), value);
-    return returnVal;
-};
-
 //TODO: Pass data from?
-const renderCircleGraph = el => {
-    const node = getSVGNode(el);
+const renderCircleGraph = node => {
     const circle = createCircle(node);
 
     renderGraph((range, i) => {
