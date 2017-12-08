@@ -1,6 +1,8 @@
 .post-card {
     width: 100%;
-    background-color: darken($color-mid-grey, 20%);
+    background-color: $color-dark-grey;
+    margin-bottom: 40px;
+    padding: 40px;
     color: #fff;
 }
 
