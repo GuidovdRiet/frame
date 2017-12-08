@@ -1,12 +1,14 @@
-import renderCircleGraph from './renderCircleGraph';
-import renderLinesGraph from './renderLinesGraph';
+const d3 = require('d3');
+const renderCircleGraph = require('./renderCircleGraph');
+const renderLinesGraph = require('./renderLinesGraph');
 
+const getSVGNode = el => d3.select(el);
 const initGraph = (el, fn) => (el ? fn(el) : false);
 
 document.onreadystatechange = () => {
     if (document.readyState == 'interactive') {
         initGraph(
-            document.querySelector('.tracking-results__arc'),
+            getSVGNode(document.querySelector('.tracking-results__arc')),
             renderCircleGraph
         );
         // initGraph(
