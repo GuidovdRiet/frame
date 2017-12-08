@@ -45,7 +45,8 @@ block content
                 .home__posts-wrapper
                     if user
                         each post in posts
-                            +postCard(post)
+                            a.home__post-link(href="a")
+                                +postCard(post)
                 .home__tracking-results.tracking-results
                     .tracking-results__card
                     .tracking-results__card

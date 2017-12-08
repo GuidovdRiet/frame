@@ -6,6 +6,8 @@
     color: #fff;
     position: relative;
     display: flex;
+    box-shadow: 0px 2px 12px -2px rgba(0,0,0,0.21);
+    transition: all .1s ease-in-out;
     &:after {
         content: "";
         width: 1px;
@@ -15,15 +17,9 @@
         bottom: -3.9em;
         left: 50%;
     }
-    &:last-child {
-        &:after {
-            content: "";
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: $color-primary;
-            border-radius: 100%;
-        }
+    &:hover {
+        box-shadow: 0px 2px 26px -2px rgba(0,0,0,0.30);
+        transform: scale(1.01);
     }
     .post-card__image-wrapper {
         .avatar {
@@ -40,20 +36,20 @@
         width: 100%;
         h1 {
             margin: 40px 0 15px 0;
-            font-size: 2rem;
+            font-size: 1.5rem;
         }
         p {
             line-height: 15px;
             font-size: 1.1rem;
         }
         .post-card__details {
-            margin: 20px 0 40px 0;
+            margin: 30px 0 40px 0;
             display: flex;
-            width: 80%;
+            width: 90%;
             justify-content: space-between;
             p {
                 text-transform: uppercase;
-                color: $color-light-grey;
+                color: #2F323A;
                 font-weight: 600;
             }
         }
@@ -111,7 +107,7 @@
         width: 70%;
         display: flex;
         margin: 2em 0;
-        justify-content: space-between;
+        justify-content: center;
     }
 
     .user-card-btn__wrapper-rounded {
