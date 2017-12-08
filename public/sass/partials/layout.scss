@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    background: #282B32;
+    background: #282b32;
     background-size: 100% 80vh;
     background-repeat: no-repeat;
     width: 100%;
@@ -32,7 +32,7 @@ body {
                 padding: 0 20px 0 0;
             }
             .tracking-results {
-                background: yellow;
+                background: $color-dark-grey;
                 flex: 1;
                 display: flex;
                 flex-direction: column;
