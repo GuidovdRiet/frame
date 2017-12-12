@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
+const { ObjectId } = require('mongodb');
 const User = mongoose.model('User');
+const Post = mongoose.model('Post');
 const multer = require('multer');
 const jimp = require('jimp');
 const uuid = require('uuid');
@@ -40,8 +42,12 @@ exports.registerForm = (req, res) => {
 };
 
 exports.show = async (req, res) => {
-    const resourceUser = await User.findOne({ _id: req.params.id });
-    res.render('profile', { resourceUser, title: 'profile' });
+    const user = await User.findOne({ _id: req.params.id });
+    const followingUsers = req.user.following;
+    const followingUsersIds = followingUsers.map(followingUserId =>
+        ObjectId(followingUserId));
+    const posts = await Post.find({ author: { $in: followingUsersIds } });
+    res.render('profile', { user, posts, title: 'profile' });
 };
 
 exports.followUser = async (req, res) => {
