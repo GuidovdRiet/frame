@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const SensorData = mongoose.model('SensorData');
 
-const insertData = async (param, value, userId) =>
+const insertData = async (param, value, userIndex) =>
     new SensorData({
         type: param,
         value: parseInt(value, 10),
-        user: userId
+        user: userIndex
     }).save();
 
-const fetchData = async (userId = null) => {};
+const fetchData = (index = 1) => SensorData.find({ user: index });
 
 module.exports = { insertData, fetchData };

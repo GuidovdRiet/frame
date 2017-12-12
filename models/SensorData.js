@@ -13,6 +13,7 @@ const sensorDataSchema = new mongoose.Schema({
         // type: mongoose.Schema.ObjectId,
         // ref: 'User'
         type: Number
+        // ref: 'User'
     }
 });
 
