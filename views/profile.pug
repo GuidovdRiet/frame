@@ -1,13 +1,24 @@
 extends layout
 
+include mixins/_postCard
+include mixins/_userCard
+
 block content
-    .profile__wrapper 
-        .profile__profile.profile-bar
-            if(user)
-                .profile-bar__avatar.avatar(style=`background-image: url('/uploads/${resourceUser.photo}')`)
-                .profile-bar__top
-                    h4!= user.username
-                    //if(user.isFollowing(resourceUser))
-                    form.profile__follow(action=`/api/users/${resourceUser._id}/follow` method='POST') 
-                        button(type='submit' name='submit') Follow
-                .profile-bar__bottom
+    .home__wrapper
+        .home__profile-wrapper
+            .home__profile.user-card
+                +userCard(user)
+
+        .home__user-content
+            .home__posts-wrapper
+                if user
+                    each post in posts
+                        a.home__post-link(href="a")
+                            +postCard(post)
+            .home__tracking-results.tracking-results
+                .tracking-results__card
+                    .tracking-results__lines
+                .tracking-results__card
+                    svg.tracking-results__arc
+
+    

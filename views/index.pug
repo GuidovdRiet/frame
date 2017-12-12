@@ -1,57 +1,20 @@
 extends layout
 
 include mixins/_postCard
+include mixins/_userCard
 
 block content
     if user
         .home__wrapper
             .home__profile-wrapper
                 .home__profile.user-card
-                    .user-card__content
-                        .user-card-avatar__wrapper 
-                            .user-card__avatar.avatar(style=`background-image: url('uploads/${user.photo}');`)
-                        h1= user.name
-                        h2 Better be good
-                    .user-card__stats
-                        .stats-wrapper
-                            h4 following
-                            h2 710
-                        .stats-wrapper
-                            h4 followers
-                            h2 690
-                        .stats-wrapper
-                            h4 posts
-                            h2 450
-                        .stats-wrapper
-                            h4 average
-                            h2 9.6
-                    .user-card-btn__wrapper-squared 
-                        a(href="#")
-                            .btn.btn__large.btn__ghost
-                                p follow
-                        a(href="#")
-                            .btn.btn__large.btn__ghost
-                                    p message
-                    .user-card-btn__wrapper-rounded
-                        .btn.btn__circle
-                            a(href="#")
-                                != h.icon('edit')
-                            
+                    +userCard(user)
 
-
-
-
-            .home__user-content
-                .home__posts-wrapper
-                    if user
-                        each post in posts
-                            a.home__post-link(href="a")
-                                +postCard(post)
-                .home__tracking-results.tracking-results
-                    .tracking-results__card
-                        .tracking-results__lines
-                    .tracking-results__card
-                        svg.tracking-results__arc
+            .profile__user-content
+                .profile__posts-wrapper
+                    each post in posts
+                        a.home__post-link(href="a")
+                            +postCard(post)
 
         
     
