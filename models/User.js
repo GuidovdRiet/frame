@@ -37,6 +37,8 @@ const userSchema = new mongoose.Schema({
     ]
 });
 
+// Zoek alle berichten van de gebruikers die in following staan
+
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
 userSchema.plugin(mongodbErrorHandler); // make mongoDB errors pretty
 

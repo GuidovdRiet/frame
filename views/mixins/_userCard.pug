@@ -1,4 +1,4 @@
-mixin userCard(user)
+mixin userCard(user, posts)
     .user-card__content
         .user-card-avatar__wrapper 
             .user-card__avatar.avatar(style=`background-image: url('/uploads/${user.photo}');`)
@@ -7,13 +7,13 @@ mixin userCard(user)
     .user-card__stats
         .stats-wrapper
             h4 following
-            h2 710
+            h2= user.following.length
         .stats-wrapper
             h4 followers
-            h2 690
+            h2= user.followers.length
         .stats-wrapper
             h4 posts
-            h2 450
+            h2= posts.length
         .stats-wrapper
             h4 average
             h2 9.6
