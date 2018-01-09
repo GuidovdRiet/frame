@@ -7,6 +7,11 @@ const userMiddleware = require('../middleware/userMiddleware');
 const { ensureLoggedIn } = require('../middleware/authMiddleware');
 const { catchErrors } = require('../handlers/errorHandlers');
 
+const requireMiddleware = async (req, res, next) => {
+    await require('./arduino')(req.user.index);
+    next();
+};
+
 router.get('/', catchErrors(postController.homePage));
 
 // -- POSTS --
@@ -50,15 +55,11 @@ router.post(
     authController.login
 );
 
-router.get('/logout', authController.logout)
+router.get('/logout', authController.logout);
 
 router.get('/users/:id', ensureLoggedIn, catchErrors(userController.show));
 
-
 // -- API --
 // user
-router.post(
-    '/api/users/:id/follow',
-    catchErrors(userController.followUser)
-)
+router.post('/api/users/:id/follow', catchErrors(userController.followUser));
 module.exports = router;

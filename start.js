@@ -19,5 +19,4 @@ require('./models/User');
 require('./models/SensorData');
 
 // Start server
-require('./arduino');
 require('./setup');

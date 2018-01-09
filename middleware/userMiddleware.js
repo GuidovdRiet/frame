@@ -34,10 +34,12 @@ exports.validateRegister = (req, res, next) => {
 };
 
 exports.register = async (req, res, next) => {
+    const count = await User.count();
     const user = new User({
         email: req.body.email,
         name: req.body.name,
-        photo: req.body.photo
+        photo: req.body.photo,
+        index: count + 1
     });
     const registerWithPromise = promisify(User.register, User);
     await registerWithPromise(user, req.body.password);

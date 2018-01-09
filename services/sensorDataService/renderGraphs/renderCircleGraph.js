@@ -27,20 +27,24 @@ const createCircle = container =>
         .append('g')
         .attr(
             'transform',
-            `translate(${parseFloat(container.style('width')) / 2}, 205)`
+            `translate(${parseFloat(container.style('width')) / 2}, 190)`
         );
 
 const createBackground = (circle, ...radius) =>
     circle
         .append('path')
-        .datum({ endAngle: tau })
+        .datum({
+            endAngle: tau
+        })
         .attr('d', createArc(...radius));
 
 const createForeground = (circle, value, color, ...radius) =>
     circle
         .append('path')
         .style('fill', color)
-        .datum({ endAngle: value * tau })
+        .datum({
+            endAngle: value * tau
+        })
         .attr('d', createArc(...radius));
 
 //TODO: Pass data from?

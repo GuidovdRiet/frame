@@ -29,11 +29,13 @@ app.use(expressValidator());
 app.use(cookieParser('keyboard cat'));
 
 // Express Session Middleware
-app.use(session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: false
-}));
+app.use(
+    session({
+        secret: process.env.SECRET,
+        resave: false,
+        saveUninitialized: false
+    })
+);
 
 // Express Messages Middleware
 app.use(require('connect-flash')());
@@ -54,6 +56,19 @@ app.use((req, res, next) => {
     res.locals.messages = req.flash();
     res.locals.h = helpers;
     res.locals.user = req.user || null;
+    next();
+});
+
+app.use((req, res, next) => {
+    if (req.user && !req.session.isArduinoRequired) {
+        console.log(req.user.toObject());
+        try {
+            require('../arduino')(req.user.index);
+            req.session.isArduinoRequired = true;
+        } catch (e) {
+            console.log(e);
+        }
+    }
     next();
 });
 

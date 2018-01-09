@@ -34,12 +34,15 @@ const userSchema = new mongoose.Schema({
             type: mongoose.Schema.ObjectId,
             ref: 'User'
         }
-    ]
+    ],
+    index: {
+        type: Number
+    }
 });
 
 // Zoek alle berichten van de gebruikers die in following staan
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
-userSchema.plugin(mongodbErrorHandler); // make mongoDB errors pretty
+userSchema.plugin(mongodbErrorHandler);
 
 module.exports = mongoose.model('User', userSchema);

@@ -2,13 +2,12 @@ const { DefinePlugin } = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 
-// JavaScript rule that specify what to do with .js files
 const javascript = {
-    test: /\.(js)$/, // see how we match anything that ends in `.js`? Cool
+    test: /\.(js)$/,
     use: [
         {
             loader: 'babel-loader',
-            options: { presets: ['es2015'] } // this is one way of passing options
+            options: { presets: ['es2015'] }
         }
     ]
 };
