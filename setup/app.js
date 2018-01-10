@@ -61,7 +61,6 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
     if (req.user && !req.session.isArduinoRequired) {
-        console.log(req.user.toObject());
         try {
             require('../arduino')(req.user.index);
             req.session.isArduinoRequired = true;
@@ -94,5 +93,7 @@ if (app.get('env') === 'development') {
 
 // production error handler
 app.use(errorHandlers.productionErrors);
+
+require('../services/postService');
 
 module.exports = app;

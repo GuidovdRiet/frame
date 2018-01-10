@@ -1,7 +1,6 @@
 const d3 = require('d3');
 const { saturateZeroOne } = require('../../../helpers/saturateValues');
 const { getRandomInt } = require('../../../helpers/randomValueInRange');
-const renderGraph = require('./renderGraph');
 
 const tau = 2 * Math.PI;
 const { ringsSpacing, ringsRadius, ringsWidth } = {
@@ -48,22 +47,30 @@ const createForeground = (circle, value, color, ...radius) =>
         .attr('d', createArc(...radius));
 
 //TODO: Pass data from?
-const renderCircleGraph = el => {
+const renderCircleGraph = (el, gsrMedior, pulseMedior, gsrMax, pulseMax) => {
     const circle = createCircle(d3.select(el));
 
-    renderGraph((range, i) => {
-        const innerRadius = ringsRadius - i * ringsSpacing;
-        const outerRadius = ringsRadius + ringsWidth - i * ringsSpacing;
+    const innerRadiusGSR = ringsRadius - 0 * ringsSpacing;
+    const outerRadiusGSR = ringsRadius + ringsWidth - 0 * ringsSpacing;
+    createBackground(circle, innerRadiusGSR, outerRadiusGSR);
+    createForeground(
+        circle,
+        saturateZeroOne(0, gsrMax, gsrMedior),
+        colors[0],
+        innerRadiusGSR,
+        outerRadiusGSR
+    );
 
-        createBackground(circle, innerRadius, outerRadius);
-        createForeground(
-            circle,
-            saturateZeroOne(0, 100, getRandomInt(0, 80)),
-            colors[i],
-            innerRadius,
-            outerRadius
-        );
-    });
+    const innerRadiusPulse = ringsRadius - 1 * ringsSpacing;
+    const outerRadiusPulse = ringsRadius + ringsWidth - 1 * ringsSpacing;
+    createBackground(circle, innerRadiusPulse, outerRadiusPulse);
+    createForeground(
+        circle,
+        saturateZeroOne(0, pulseMax, pulseMedior),
+        colors[1],
+        innerRadiusPulse,
+        outerRadiusPulse
+    );
 };
 
 module.exports = renderCircleGraph;
