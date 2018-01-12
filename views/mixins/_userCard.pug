@@ -15,8 +15,20 @@ mixin userCard(posts, displayUserButtons, resourceUser, reqUserPostsTotal)
             h4 posts
             h2= reqUserPostsTotal
         .stats-wrapper
-            h4 average
-            h2 9.6
+            h4 popular
+            if user.followers.length < 2
+                h2 0
+            else if user.followers.length < 10
+                h2 1.5
+            else if user.followers.length < 15
+                h2 3.2
+            else if user.followers.length < 20
+                h2 4.6
+            else if user.followers.length < 25
+                h2 6.8
+            else 
+                h2 0 
+
     .user-card-btn__wrapper-squared
         if displayUserButtons
             form(action=`/api/users/${user._id}/follow` class='user-card__follow-form' method="POST")
