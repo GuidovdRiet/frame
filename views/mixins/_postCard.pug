@@ -1,6 +1,5 @@
 mixin postCard(post, resourceUser)
     .post-card
-        != h.dump(resourceUser)
         .post-card__image-wrapper
                 .avatar(style=`background-image: url('/uploads/${resourceUser ? resourceUser.photo : user.photo}')`)
 

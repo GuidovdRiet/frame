@@ -43,7 +43,7 @@ exports.registerForm = (req, res) => {
 
 exports.show = async (req, res) => {
     const resourceUser = await User.findOne({ _id: req.params.id });
-    const posts = await Post.find({ author: { $in: req.user._id } });
+    const posts = await Post.find({ author: { $in: resourceUser._id } });
     const displayUserButtons = true;
     res.render('profile', {
         resourceUser,
