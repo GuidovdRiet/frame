@@ -43,7 +43,10 @@ exports.registerForm = (req, res) => {
 
 exports.show = async (req, res) => {
     const resourceUser = await User.findOne({ _id: req.params.id });
-    const posts = await Post.find({ author: { $in: resourceUser._id } });
+    const posts = await Post.find({ author: { $in: resourceUser._id } }).populate('author', [
+        'name',
+        'photo'
+    ]);
     const displayUserButtons = true;
     res.render('profile', {
         resourceUser,
@@ -55,6 +58,13 @@ exports.show = async (req, res) => {
 
 exports.followUser = async (req, res) => {
     const userToFollow = await User.findOne({ _id: req.params.id });
+    console.log(userToFollow);
+
+    if (userToFollow._id.equals(req.user._id)) {
+        console.log('not allowed');
+        req.flash('error', "You can't follow yourself");
+        res.redirect('back');
+    }
 
     const following = req.user.following.map(obj => obj.toString());
     const operatorOne = following.includes(userToFollow._id.toString())
@@ -75,11 +85,6 @@ exports.followUser = async (req, res) => {
         { [operatorTwo]: { followers: req.user._id } },
         { new: true }
     );
-
-    // if (userToFollow._id.equals(req.user._id)) {
-    //     req.flash('error', "You can't follow yourself");
-    //     res.redirect('back');
-    // }
 
     res.json(currentViewedUser);
 };

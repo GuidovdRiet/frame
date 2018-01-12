@@ -36,6 +36,7 @@
     "johnny-five": "^0.11.7",
     "lodash": "^4.17.4",
     "md5": "^2.2.1",
+    "moment": "^2.20.1",
     "mongodb": "^2.2.33",
     "mongoose": "^4.12.1",
     "mongoose-mongodb-errors": "0.0.2",
