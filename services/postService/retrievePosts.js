@@ -1,69 +1,11 @@
 const getRandomArbitrary = (min, max) =>
     parseInt(Math.random() * (max - min) + min, 10);
 
-const retrievePosts = (type, medior, username) => {
-    switch (type) {
-        case 'GSR':
-            return switchGSRValue(medior, username);
-            break;
-
-        case 'Pulse':
-            return switchPulseValue(medior, username);
-            break;
-    }
-};
-
-const switchGSRValue = (medior, username) => {
-    const { relaxedMessages, uneasedMessages, stressedMessages } = GSRMessages;
-
-    switch (true) {
-        case medior > 650 && medior < 670:
-            return relaxedMessages[
-                getRandomArbitrary(0, relaxedMessages.length)
-            ];
-            break;
-        case medior > 670 && medior < 700:
-            return uneasedMessages[
-                getRandomArbitrary(0, uneasedMessages.length)
-            ];
-            break;
-        case medior > 700:
-            return stressedMessages[
-                getRandomArbitrary(0, stressedMessages.length)
-            ];
-            break;
-    }
-};
-
-const switchPulseValue = (medior, username) => {
-    const {
-        depressingMessages,
-        happyMessages,
-        sportyMessages,
-        highHeartBeatMessages
-    } = pulseMessages;
-    switch (true) {
-        case medior > 40 && medior < 50:
-            return depressingMessages[
-                getRandomArbitrary(0, depressingMessages.length)
-            ];
-            break;
-
-        case medior > 50 && 75:
-            return happyMessages[getRandomArbitrary(0, happyMessages.length)];
-            break;
-
-        case medior > 75 && medior < 120:
-            return sportyMessages[getRandomArbitrary(0, sportyMessages.length)];
-            break;
-
-        case medior > 120:
-            return highHeartBeatMessages[
-                getRandomArbitrary(0, highHeartBeatMessages.length)
-            ];
-            break;
-    }
-};
+const defaultMessages = [
+    'Default message 1',
+    'Default message 2',
+    'Default message 3'
+];
 
 const GSRMessages = {
     relaxedMessages: [
@@ -105,3 +47,77 @@ const pulseMessages = {
         'Random heartbeat quote 3'
     ]
 };
+
+const retrievePosts = (type, medior, username) => {
+    switch (type) {
+        case 'GSR':
+            return switchGSRValue(medior, username);
+            break;
+
+        case 'Pulse':
+            return switchPulseValue(medior, username);
+            break;
+    }
+};
+
+const switchGSRValue = (medior, username) => {
+    const { relaxedMessages, uneasedMessages, stressedMessages } = GSRMessages;
+
+    switch (true) {
+        case medior > 650 && medior < 670:
+            return relaxedMessages[
+                getRandomArbitrary(0, relaxedMessages.length)
+            ];
+            break;
+        case medior > 670 && medior < 700:
+            return uneasedMessages[
+                getRandomArbitrary(0, uneasedMessages.length)
+            ];
+            break;
+        case medior > 700:
+            return stressedMessages[
+                getRandomArbitrary(0, stressedMessages.length)
+            ];
+            break;
+        default:
+            return defaultMessages[
+                getRandomArbitrary(0, defaultMessages.length)
+            ];
+    }
+};
+
+const switchPulseValue = (medior, username) => {
+    const {
+        depressingMessages,
+        happyMessages,
+        sportyMessages,
+        highHeartBeatMessages
+    } = pulseMessages;
+    switch (true) {
+        case medior > 40 && medior < 50:
+            return depressingMessages[
+                getRandomArbitrary(0, depressingMessages.length)
+            ];
+            break;
+
+        case medior > 50 && 75:
+            return happyMessages[getRandomArbitrary(0, happyMessages.length)];
+            break;
+
+        case medior > 75 && medior < 120:
+            return sportyMessages[getRandomArbitrary(0, sportyMessages.length)];
+            break;
+
+        case medior > 120:
+            return highHeartBeatMessages[
+                getRandomArbitrary(0, highHeartBeatMessages.length)
+            ];
+            break;
+        default:
+            return defaultMessages[
+                getRandomArbitrary(0, defaultMessages.length)
+            ];
+    }
+};
+
+module.exports = retrievePosts;
