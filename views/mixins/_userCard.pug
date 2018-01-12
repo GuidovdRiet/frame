@@ -1,8 +1,8 @@
-mixin userCard(user, posts, displayUserButtons)
+mixin userCard(posts, displayUserButtons, resourceUser)
     .user-card__content
         .user-card-avatar__wrapper 
-            .user-card__avatar.avatar(style=`background-image: url('/uploads/${user.photo}');`)
-        h1= user.name
+            .user-card__avatar.avatar(style=`background-image: url('/uploads/${resourceUser ? resourceUser.photo : user.photo}');`)
+        h1= resourceUser ? resourceUser.name : user.name
         h2 Better be good
     .user-card__stats
         .stats-wrapper
@@ -19,10 +19,10 @@ mixin userCard(user, posts, displayUserButtons)
             h2 9.6
     .user-card-btn__wrapper-squared
         if displayUserButtons
-            form(action=`/api/users/${user._id}/follow` method="POST")
+            form(action=`/api/users/${user._id}/follow` class='user-card__follow-form' method="POST")
                 - const followersStrings = user.followers.map(obj => obj.toString());
                 - const followButtonClass = followersStrings.includes(user._id.toString()) ? 'unfollow' : 'follow';
-                button(type="submit" class=`follow ${followButtonClass}` name="follow") follow
+                button(type="submit" class=`follow ${followButtonClass}` name="follow")= followButtonClass
 
             a(href="#")
                 .btn.btn__large.btn__ghost

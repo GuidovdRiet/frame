@@ -7,17 +7,17 @@ block content
     .home__wrapper
         .home__profile-wrapper
             .home__profile.user-card
-                +userCard(user, null, displayUserButtons)
+                +userCard(null, displayUserButtons, resourceUser)
 
         .home__user-content
             .home__posts-wrapper
                 if user
                     each post in posts
                         a.home__post-link(href="a")
-                            +postCard(post)
+                            +postCard(post, resourceUser)
 
             .home__tracking-results.tracking-results(
-                data-index=user.index
+                data-index=resourceUser.index
             )
                 .tracking-results__card
                     h1 Tracking results
