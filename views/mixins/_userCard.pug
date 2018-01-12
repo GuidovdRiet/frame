@@ -22,10 +22,11 @@ mixin userCard(posts, displayUserButtons, resourceUser)
             form(action=`/api/users/${user._id}/follow` class='user-card__follow-form' method="POST")
                 - const followersStrings = user.followers.map(obj => obj.toString());
                 - const followButtonClass = followersStrings.includes(user._id.toString()) ? 'unfollow' : 'follow';
-                button(type="submit" class=`follow ${followButtonClass}` name="follow")= followButtonClass
+                button.btn__large.btn__ghost(type="submit" class=`follow ${followButtonClass}` name="follow")
+                    p= followButtonClass
 
-            a(href="#")
-                .btn.btn__large.btn__ghost
+            form
+                button.btn__large.btn__ghost
                     p message
 
     .user-card-btn__wrapper-rounded

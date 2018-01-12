@@ -2,6 +2,9 @@ const fs = require('fs');
 
 exports.dump = obj => JSON.stringify(obj, null, 2);
 
+// convert timestamp
+exports.moment = require('moment');
+
 // insert an SVG
 exports.icon = name => fs.readFileSync(`./public/images/icons/${name}.svg`);
 

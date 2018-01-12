@@ -1,11 +1,16 @@
 .btn__large {
-    padding: 1.5em 5.6em; 
+    padding: .9em 2.8em; 
     width: 6em;
     height: 1.4em;
     display: flex;
+    box-sizing: content-box;
+    background: none;
     justify-content: center;
     align-items: center;
     transition: all .2s ease-in-out;
+    &:focus {
+        outline: none;
+    }
     p {
         font-size: 1.1rem;
         letter-spacing: 1px;
