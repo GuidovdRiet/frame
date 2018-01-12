@@ -4,14 +4,29 @@ const throttle = require('lodash/throttle');
 
 const { insertData } = require('../services/sensorDataService');
 
+var rate = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+sampleCounter = 0,
+lastBeatTime = 0,
+P = 512,
+T = 512,
+thresh = 525,
+amp = 100,
+firstBeat = true,
+secondBeat = false,
+IBI = 600,
+Pulse = false,
+BPM,
+Signal,
+QS = false;
+
 module.exports = sessionUserId => {
     io.on('data', async ({ type, value, userId }) => {
+        console.log('received data, inserting..', type, value, userId)
         await insertData(
             String(type),
             parseInt(value, 10),
             parseInt(userId, 10)
         );
-        console.log('inserted value', type, value, userId);
     });
 
     new Board().on('ready', () => {
@@ -26,7 +41,7 @@ module.exports = sessionUserId => {
                     value: gsrLeftSensor.value,
                     userId: sessionUserId
                 });
-            }, 2500)
+            }, 15000)
         );
 
         gsrRightSensor.on(
@@ -37,119 +52,100 @@ module.exports = sessionUserId => {
                     value: gsrRightSensor.value,
                     userId: sessionUserId
                 });
-            }, 2500)
+            }, 10000)
         );
-    });
-};
 
-var rate = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    sampleCounter = 0,
-    lastBeatTime = 0,
-    P = 512,
-    T = 512,
-    thresh = 525,
-    amp = 100,
-    firstBeat = true,
-    secondBeat = false,
-    IBI = 600,
-    Pulse = false,
-    BPM,
-    Signal,
-    QS = false;
-
-var five = require('johnny-five'),
-    board,
-    sensor;
-board = new five.Board();
-
-board.on('ready', function() {
-    console.log('board ready');
-
-    sensor = new five.Sensor({
-        pin: 'A0',
-        freq: 2
+        var sensor = new Sensor({
+            pin: 'A0',
+            freq: 2
+        });
+    
+        sensor.scale([0, 1024]).on('change', function() {
+            Signal = this.scaled;
+            calculate_bpm();
+    
+            if (QS === true) {
+                console.log('EMITTING PULSE', BPM)
+                io.emit('data', {
+                    type: 'Pulse',
+                    value: BPM,
+                    userId: sessionUserId
+                });
+                QS = false;
+            }
+        });
     });
 
-    sensor.scale([0, 1024]).on('change', function() {
-        Signal = this.scaled;
-        calculate_bpm();
-
-        if (QS === true) {
-            console.log('BPM : ', BPM);
-            QS = false;
+    function calculate_bpm() {
+        // console.log('searching for pulse');
+        sampleCounter += 2;
+        N = sampleCounter - lastBeatTime;
+    
+        if (Signal < thresh && N > IBI / 5 * 3) {
+            if (Signal < T) {
+                T = Signal;
+            }
         }
-    });
-});
-
-function calculate_bpm() {
-    // console.log('searching for pulse');
-    sampleCounter += 2;
-    N = sampleCounter - lastBeatTime;
-
-    if (Signal < thresh && N > IBI / 5 * 3) {
-        if (Signal < T) {
-            T = Signal;
+    
+        if (Signal > thresh && Signal > P) {
+            P = Signal;
         }
-    }
-
-    if (Signal > thresh && Signal > P) {
-        P = Signal;
-    }
-
-    if (Signal < thresh && Pulse === true) {
-        console.log('pulse is gone');
-        Pulse = false;
-        amp = P - T;
-        thresh = amp / 2 + T;
-        P = thresh;
-        T = thresh;
-    }
-
-    if (N > 2500) {
-        thresh = 512;
-        P = 512;
-        T = 512;
-        lastBeatTime = sampleCounter;
-        firstBeat = true;
-        secondBeat = false;
-    }
-
-    if (N > 250) {
-        // if((Pulse === false)){
-        if (Signal > thresh && Pulse === false && N > IBI / 5 * 3) {
-            console.log('there is a pulse');
-            Pulse = true;
-            IBI = sampleCounter - lastBeatTime;
-
+    
+        if (Signal < thresh && Pulse === true) {
+            Pulse = false;
+            amp = P - T;
+            thresh = amp / 2 + T;
+            P = thresh;
+            T = thresh;
+        }
+    
+        if (N > 2500) {
+            thresh = 512;
+            P = 512;
+            T = 512;
             lastBeatTime = sampleCounter;
-
-            if (secondBeat) {
-                secondBeat = false;
-                for (var i = 0; i <= 9; i++) {
-                    rate[i] = IBI;
+            firstBeat = true;
+            secondBeat = false;
+        }
+    
+        if (N > 250) {
+            // if((Pulse === false)){
+            if (Signal > thresh && Pulse === false && N > IBI / 5 * 3) {
+                Pulse = true;
+                IBI = sampleCounter - lastBeatTime;
+    
+                lastBeatTime = sampleCounter;
+    
+                if (secondBeat) {
+                    secondBeat = false;
+                    for (var i = 0; i <= 9; i++) {
+                        rate[i] = IBI;
+                    }
                 }
+    
+                if (firstBeat) {
+                    firstBeat = false;
+                    secondBeat = true;
+                    return;
+                }
+    
+                var runningTotal = 0;
+    
+                for (var i = 0; i <= 8; i++) {
+                    rate[i] = rate[i + 1];
+                    runningTotal += rate[i];
+                    console.log(runningTotal);
+                }
+    
+                rate[9] = IBI;
+                runningTotal += rate[9];
+                runningTotal /= 10;
+                // console.log(runningTotal);
+                BPM = 60000 / runningTotal;
+                QS = true;
             }
-
-            if (firstBeat) {
-                firstBeat = false;
-                secondBeat = true;
-                return;
-            }
-
-            var runningTotal = 0;
-
-            for (var i = 0; i <= 8; i++) {
-                rate[i] = rate[i + 1];
-                runningTotal += rate[i];
-                console.log(runningTotal);
-            }
-
-            rate[9] = IBI;
-            runningTotal += rate[9];
-            runningTotal /= 10;
-            // console.log(runningTotal);
-            BPM = 60000 / runningTotal;
-            QS = true;
         }
     }
 }
+
+

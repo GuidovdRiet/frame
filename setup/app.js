@@ -62,6 +62,7 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
     if (req.user && !req.session.isArduinoRequired) {
         try {
+            console.log('INDEX', req.user.index)
             require('../arduino')(req.user.index);
             req.session.isArduinoRequired = true;
         } catch (e) {

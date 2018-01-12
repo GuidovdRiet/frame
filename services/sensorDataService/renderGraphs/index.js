@@ -13,17 +13,17 @@ document.onreadystatechange = async () => {
         const res = await fetch(`/fetch-data/${index}`);
         const { data } = await res.json();
 
-        const gsrTotal = data.reduce((accumulator, data, index, array) => {
-            if (data.type === 'GSR') return accumulator + data.value;
-        }, 0);
         const gsrData = data.filter(d => d.type === 'GSR');
+        const gsrTotal = gsrData.reduce((accumulator, data, index, array) => 
+            accumulator + data.value
+        , 0);
         const gsrMedior = gsrTotal / gsrData.length;
         const gsrMax = Math.max.apply(Math, gsrData.map(d => d.value));
 
-        const pulseTotal = data.reduce((accumulator, data, index, array) => {
-            if (data.type === 'Pulse') return accumulator + data.value;
-        }, 0);
         const pulseData = data.filter(d => d.type === 'Pulse');
+        const pulseTotal = pulseData.reduce((accumulator, data, index, array) => 
+            accumulator + data.value
+        , 0);
         const pulseMedior = pulseTotal / pulseData.length;
         const pulseMax = Math.max.apply(Math, pulseData.map(d => d.value));
 
