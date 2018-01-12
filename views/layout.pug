@@ -45,6 +45,7 @@ html
                     .navbar__avatar
                         a(href=`/users/${user._id}`)
                             .avatar(style=`background-image: url('/uploads/${user.photo}')`)
+                            
                 else 
                     a(href='/login').navbar__item
                         != h.icon('next')  

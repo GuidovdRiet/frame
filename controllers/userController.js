@@ -47,7 +47,13 @@ exports.show = async (req, res) => {
     const followingUsersIds = followingUsers.map(followingUserId =>
         ObjectId(followingUserId));
     const posts = await Post.find({ author: { $in: followingUsersIds } });
-    res.render('profile', { user, posts, title: 'profile' });
+    const displayUserButtons = true;
+    res.render('profile', {
+        user,
+        posts,
+        displayUserButtons,
+        title: 'profile'
+    });
 };
 
 exports.followUser = async (req, res) => {
