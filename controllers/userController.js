@@ -42,15 +42,11 @@ exports.registerForm = (req, res) => {
 };
 
 exports.show = async (req, res) => {
-    const user = await User.findOne({ _id: req.params.id });
-    const followingUsers = req.user.following;
-    const followingUsersIds = followingUsers.map(followingUserId =>
-        ObjectId(followingUserId)
-    );
-    const posts = await Post.find({ author: { $in: followingUsersIds } });
+    const resourceUser = await User.findOne({ _id: req.params.id });
+    const posts = await Post.find({ author: { $in: req.user._id } });
     const displayUserButtons = true;
     res.render('profile', {
-        user,
+        resourceUser,
         posts,
         displayUserButtons,
         title: 'profile'
@@ -80,10 +76,10 @@ exports.followUser = async (req, res) => {
         { new: true }
     );
 
-    if (userToFollow._id.equals(req.user._id)) {
-        req.flash('error', "You can't follow yourself");
-        res.redirect('back');
-    }
+    // if (userToFollow._id.equals(req.user._id)) {
+    //     req.flash('error', "You can't follow yourself");
+    //     res.redirect('back');
+    // }
 
     res.json(currentViewedUser);
 };
