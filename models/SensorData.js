@@ -8,7 +8,7 @@ const sensorDataSchema = new mongoose.Schema({
     value: {
         type: Number
     },
-    user: {
+    userId: {
         type: Number
     }
 });

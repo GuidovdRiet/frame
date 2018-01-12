@@ -10,10 +10,9 @@ rule.second = 1;
 const job = schedule.scheduleJob(rule, async () => {
     const users = await User.find();
     users.forEach(async user => {
-        const sensorData = await SensorData.find({ user: user.index });
+        const sensorData = await SensorData.find({ userId: user.index });
 
         const gsrData = sensorData.filter(d => {
-            console.log(d.user, user.index);
             d.type === 'GSR';
         });
         const gsrTotal = gsrData.reduce(
@@ -29,6 +28,6 @@ const job = schedule.scheduleJob(rule, async () => {
         );
         const pulseMedior = pulseTotal / pulseData.length;
 
-        // console.log(gsrTotal, user.email);
+        //post random posts
     });
 });

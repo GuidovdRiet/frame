@@ -1,6 +1,5 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const io = require('socket.io');
 
 // Import env variables from variables.env
 dotenv.config({ path: 'variables.env' });

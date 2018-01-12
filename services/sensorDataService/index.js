@@ -5,9 +5,9 @@ const insertData = async (param, value, userIndex) =>
     new SensorData({
         type: param,
         value: parseInt(value, 10),
-        user: userIndex
+        userId: userIndex
     }).save();
 
-const fetchData = (index = 1) => SensorData.find({ user: index });
+const fetchData = (index = 1) => SensorData.find({ userId: index });
 
 module.exports = { insertData, fetchData };
