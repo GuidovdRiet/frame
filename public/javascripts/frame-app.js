@@ -12,6 +12,7 @@ window.addEventListener('load', () => {
             .post(e.target.action)
             .then((res) => {
                 console.log(res);
+                window.location.reload();
             })
             .catch((err) => {
                 console.log(err);

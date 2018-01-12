@@ -1,4 +1,4 @@
-mixin userCard(posts, displayUserButtons, resourceUser)
+mixin userCard(posts, displayUserButtons, resourceUser, reqUserPostsTotal)
     .user-card__content
         .user-card-avatar__wrapper 
             .user-card__avatar.avatar(style=`background-image: url('/uploads/${resourceUser ? resourceUser.photo : user.photo}');`)
@@ -13,7 +13,7 @@ mixin userCard(posts, displayUserButtons, resourceUser)
             h2= user.followers ? user.followers.length : 0
         .stats-wrapper
             h4 posts
-            h2= posts ? posts.length : 0
+            h2= reqUserPostsTotal
         .stats-wrapper
             h4 average
             h2 9.6

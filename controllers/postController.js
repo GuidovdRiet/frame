@@ -11,12 +11,19 @@ exports.homePage = async (req, res) => {
     const followingUsers = req.user.following;
     const followingUsersIds = followingUsers.map(followingUserId =>
         ObjectId(followingUserId));
-    const posts = await Post.find({ author: { $in: followingUsersIds } }).populate('author', [
-        'name',
-        'photo'
-    ]);
+    const posts = await Post.find({
+        author: { $in: followingUsersIds }
+    }).populate('author', ['name', 'photo']);
     const displayUserButtons = false;
-    res.render('index', { title: 'index', posts, displayUserButtons });
+    const userPostsTotal = await Post.find({
+        author: { $in: req.user._id }
+    }).count();
+    res.render('index', {
+        title: 'index',
+        posts,
+        displayUserButtons,
+        userPostsTotal
+    });
 };
 
 exports.addPost = (req, res) => {
