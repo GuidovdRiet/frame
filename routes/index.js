@@ -6,11 +6,17 @@ const authController = require('../controllers/authController');
 const userMiddleware = require('../middleware/userMiddleware');
 const { ensureLoggedIn } = require('../middleware/authMiddleware');
 const { catchErrors } = require('../handlers/errorHandlers');
+const { fetchData } = require('../services/sensorDataService');
 
 const requireMiddleware = async (req, res, next) => {
     await require('./arduino')(req.user.index);
     next();
 };
+
+router.get('/fetch-data/:index', async (req, res) => {
+    const data = await fetchData(req.params.index);
+    return res.json({ data });
+});
 
 router.get('/', catchErrors(postController.homePage));
 

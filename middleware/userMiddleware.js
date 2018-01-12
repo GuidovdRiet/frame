@@ -35,6 +35,7 @@ exports.validateRegister = (req, res, next) => {
 
 exports.register = async (req, res, next) => {
     const count = await User.count();
+
     const user = new User({
         email: req.body.email,
         name: req.body.name,

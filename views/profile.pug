@@ -15,10 +15,15 @@ block content
                     each post in posts
                         a.home__post-link(href="a")
                             +postCard(post)
-            .home__tracking-results.tracking-results
+
+            .home__tracking-results.tracking-results(
+                data-index=user.index
+            )
                 .tracking-results__card
+                    h1 Tracking results
                     .tracking-results__lines
                 .tracking-results__card
+                    h1 Tracking results
                     svg.tracking-results__arc
 
     

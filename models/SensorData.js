@@ -9,11 +9,7 @@ const sensorDataSchema = new mongoose.Schema({
         type: Number
     },
     user: {
-        //TEMP: omit Mongo objectId for test data
-        // type: mongoose.Schema.ObjectId,
-        // ref: 'User'
         type: Number
-        // ref: 'User'
     }
 });
 
