@@ -5,7 +5,7 @@ mixin postCard(post, resourceUser)
 
         .post-card__content-wrapper
                 h1.post-card__title= `${post.title},`
-                p= post.body.split(' ').slice(0, 8).join(' ')
+                p= post.body
                 
                 .post-card__details
                         p= post.author.name
