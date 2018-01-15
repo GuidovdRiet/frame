@@ -74,3 +74,27 @@ a {
     @extend .background;
     border-radius: 50%;
 }
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    .signup-form {
+        margin: 0 auto;
+        .form-group {
+            label,
+            input {
+                display: block;
+            }
+            label {
+                padding-bottom: 3px;
+                color: #fff;
+            }
+            input {
+                border-radius: 3px;
+                border-color: transparent;
+                padding: 3px;
+                margin-bottom: 15px;
+            }
+        }
+    }
+}
