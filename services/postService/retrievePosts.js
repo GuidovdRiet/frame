@@ -2,49 +2,57 @@ const getRandomArbitrary = (min, max) =>
     parseInt(Math.random() * (max - min) + min, 10);
 
 const defaultMessages = [
-    'Default message 1',
-    'Default message 2',
-    'Default message 3'
+    'Normal day today. So this will be a normal post. 😴',
+    'Same Shit Different Day #SSDD 😴',
+    "I think I am going emo. 😴 Being emotionally dead inside and won't have to post any status about it seems like my cup of tea.",
+    "I want attention so I'm writing this post for nothing. 😴",
+    'Boreeeed 😴'
 ];
 
 const GSRMessages = {
     relaxedMessages: [
-        'Random relaxed quote 1',
-        'Random relaxed quote 2',
-        'Random relaxed quote 3'
+        "I can finally relax after a long hard day at work.. 😌 Can't stand working with those annoying colleagues of mine.",
+        'Listening to music is so relaxing. 😌',
+        'Watching the sunset can be so relaxing, knowing that you just got through another day in life. 😌',
+        'Relaxing on the couch after a long day is the best feeling ever. 😌',
+        'Relaxing in the hot tub while listening to some music is the best way to end the day. 😌'
     ],
     uneasedMessages: [
-        'Random uneased quote 1',
-        'Random uneased quote 2',
-        'Random uneased quote 3'
+        'I have an uneasy feeling about the results from my job interview. 😕',
+        'Lol my cat has been watching me all day and I find it very disturbing. 😕',
+        'Who wants to go for a drink? Could definitely use some small talk sometimes! 😕',
+        "Have this uneasing feeling walking down this dark alley which smells of piss and hobos. Hope I don't step on a syringe and get AIDS. 😕"
     ],
     stressedMessages: [
-        'Random stressed quote 1',
-        'Random stressed quote 2',
-        'Random stressed quote 3'
+        'Damn.... This project is stressing me out. Anyone want to get a beer with me? 😫',
+        "Another f*cking stressful day at school. When I get home, I'm gonna order pizza and watch some Netflix, or play Skyrim again. 😫",
+        'Gonna go to the gym to get rid of all this damn stress. Who wants to join? 😫'
     ]
 };
 
 const pulseMessages = {
     depressingMessages: [
-        'Random depressing quote 1',
-        'Random depressing quote 2',
-        'Random depressing quote 3'
+        'I just got my test results back. Feeling depressed A.F right now 😢',
+        "This weather is making me depressed. Can't wait for the summer. 😢",
+        "What's life anyway.. 😢",
+        "Who's in for some company? Feeling very alone right now.. 😢",
+        'Seeing all these depressing posts from depressed people is making me feeling depressed. 😢'
     ],
     happyMessages: [
-        'Random happy quote 1',
-        'Random happy quote 2',
-        'Random happy quote 3'
+        'Work out, drink water, eat good! #healthylife #goals 😄',
+        'Lol ate my 5th avocodo today but who cares! Living good! #milleniallife 😄',
+        "I'm so in love right now 😍",
+        'Having sex three times in one day makes you feel pretty exhausted LMFAO 😂'
     ],
     sportyMessages: [
-        'Random sporty quote 1',
-        'Random sporty quote 2',
-        'Random sporty quote 3'
+        'Just got out of the gym, feeling buffed bro! 💪',
+        'Sixth time going to the gym this week, I got my routines going #gymlife 💪',
+        'Broteines BRO!!! #GYMLIFE 💪'
     ],
     highHeartBeatMessages: [
-        'Random heartbeat quote 1',
-        'Random heartbeat quote 2',
-        'Random heartbeat quote 3'
+        "I've been drinking quote a lot lately..",
+        "I just can't stop smoking cigarettes! Wish I could stop, cold turkey",
+        'Whoa I can feel my heart beating, I should start living more healthy'
     ]
 };
 
