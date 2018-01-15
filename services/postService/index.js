@@ -6,7 +6,7 @@ const SensorData = mongoose.model('SensorData');
 const retrievePosts = require('./retrievePosts');
 
 const rule = new schedule.RecurrenceRule();
-rule.minute = 1;
+rule.second = 1;
 
 const job = schedule.scheduleJob(rule, async () => {
     console.log('running job...');
