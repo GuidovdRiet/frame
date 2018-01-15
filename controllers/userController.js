@@ -47,11 +47,15 @@ exports.show = async (req, res) => {
         'name',
         'photo'
     ]);
+    const userPostsTotal = await Post.find({
+        author: { $in: resourceUser }
+    }).count();
     const displayUserButtons = true;
     res.render('profile', {
         resourceUser,
         posts,
         displayUserButtons,
+        userPostsTotal,
         title: 'profile'
     });
 };

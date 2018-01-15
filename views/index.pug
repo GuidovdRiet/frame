@@ -8,13 +8,13 @@ block content
         .home__wrapper
             .home__profile-wrapper
                 .home__profile.user-card
-                    +userCard(posts, displayUserButtons, null)
+                    +userCard(posts, displayUserButtons, null, userPostsTotal)
 
             .profile__user-content
                 .profile__posts-wrapper
                     each post in posts
                         a.home__post-link(href="a")
-                            +postCard(post, null)
+                            +postCard(post, null, reqUserPostsTotal)
 
         
     
